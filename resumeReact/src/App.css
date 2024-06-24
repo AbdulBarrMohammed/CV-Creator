@@ -1,0 +1,208 @@
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 35px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+h1, h2, p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #eef0f4;
+  padding-top: 150px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  background-color: #5756CE;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  color: white;
+  top: 0;
+  padding: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.downloadBtn {
+  background-color: #5756CE;
+  font-weight: 700;
+  height: 50px;
+  border: 1px solid white;
+  color: white;
+  border-radius: 30px;
+  padding: 10px 50px;
+  font-size: 14px;
+  margin-right: 40px;
+
+}
+
+/* BODY */
+.Resume {
+  background-color: white;
+  min-height: 900px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 30px;
+  margin-top: 20px;
+
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  padding-top: 20px;
+}
+
+.education-container, .professional-container, .general-container {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 10px 20px;
+
+}
+.general-container {
+  margin-bottom: 20px;
+}
+
+.education, .professional, .general {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-container img {
+  height: 40px;
+}
+
+ .general button, .education button, .professional button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+
+.downBtn {
+  height: 30px;
+  cursor: pointer;
+}
+
+
+/* FORM */
+
+
+form {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+}
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+  padding: 15px 10px;
+  border: none;
+  background-color: #eef0f4;
+  border-radius: 12px;
+
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.btn-container button {
+  padding: 15px 50px;
+  background-color: #5756CE;
+  font-weight: 700;
+  color: white;
+  border-radius: 30px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+/* FORM ITEMS */
+
+.formItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid #eef0f4;
+  line-height: 2px;
+}
+
+.rightFormItem {
+  display: flex;
+  gap: 10px;
+}
+
+.rightFormItem button {
+  border: none;
+  background-color: #5756CE;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* RESUME */
+.resumeHeader {
+  text-align: center;
+  line-height: 5px;
+  padding-bottom: 10px;
+}
+
+span {
+  color: #5756CE;
+}
+
+.line {
+  height: 2px;
+  background-color: black;
+
+}
+
+.eduResume, .proResume {
+  /*line-height: 5px; */
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.resumeLeft {
+  line-height: 5px;
+}
+
+.wordBold {
+  font-weight: bold;
+}
+
+.resumeDescription {
+  font-size: 12px;
+}
