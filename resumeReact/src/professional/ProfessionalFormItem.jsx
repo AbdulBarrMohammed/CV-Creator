@@ -1,15 +1,15 @@
-function ProfessionalFormItem ({id, job, company, proStartDate, proEndDate, description, onDelete}) {
+function ProfessionalFormItem ({id, job, company, proStartDate, proEndDate, description, onDelete, onEdit}) {
     return (
         <div class="formItem">
             <div class="leftFormItem">
                 <h4>{job}</h4>
                 <p>{company}</p>
-                <p>{description}</p>
+                <p class="description">{description}</p>
                 <p>{proStartDate} - {proEndDate}</p>
             </div>
             <div class="rightFormItem">
                 <button onClick={() => onDelete(id)}>Delete</button>
-                <button>Edit</button>
+                <button onClick={() => onEdit(id)}>Edit</button>
             </div>
         </div>
 

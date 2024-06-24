@@ -40,6 +40,7 @@ body {
   padding: 10px 50px;
   font-size: 14px;
   margin-right: 40px;
+  cursor: pointer;
 
 }
 
@@ -50,8 +51,11 @@ body {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 30px;
   margin-top: 20px;
+  margin-bottom: 20px;
 
 }
+
+
 
 .left-side {
   display: flex;
@@ -161,6 +165,12 @@ input {
   display: flex;
   gap: 10px;
 }
+
+
+.description {
+  line-height: 15px;
+}
+
 
 .rightFormItem button {
   border: none;

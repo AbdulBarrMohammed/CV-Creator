@@ -1,8 +1,8 @@
 import React from 'react';
-import downBtn from './assets/triangle-small-down.svg';
-import school from './assets/school.svg';
-import briefcase from './assets/briefcase.svg';
-import account from './assets/account.svg';
+import downBtn from '../assets/triangle-small-down.svg';
+import school from '../assets/school.svg';
+import briefcase from '../assets/briefcase.svg';
+import account from '../assets/account.svg';
 
 const FormContainer = ({ Active, setActive, name}) => {
   let pic = school;

@@ -11,7 +11,7 @@ import ResumeEducation from './resume/ResumeEducation';
 import ResumeProfessional from './resume/ResumeProfessional ';
 import ProfessionalFormItem from './professional/ProfessionalFormItem';
 import EducationEditForm from './education/EducationEditForm';
-
+import ProfessionalEditForm from './professional/ProfessionalEditForm';
 
 function App() {
   const [currKey, setCurrKey] = useState('');
@@ -37,7 +37,7 @@ function App() {
   const [education, setEducation] = useState([]); const [professional, setProfessional] = useState([]);
 
   //edit buttons
-  const [eduEditActive, setEduEditActive] = useState(false);
+  const [eduEditActive, setEduEditActive] = useState(false); const [proEditActive, setProEditActive] = useState(false);
 
   const handleEduSubmit = (e) => {
     e.preventDefault();
@@ -53,13 +53,6 @@ function App() {
     e.preventDefault();
     const key = currKey;
 
-    /*
-    const updatedEducation = education.map(edu => {
-      if (edu.id === key) {
-        return {...edu, degree: degree, school: school, city: city, country: country, startDate: startDate, endDate: endDate };
-      }
-      return edu;
-    }); */
     const updatedEducation = education.map(edu => {
       if (edu.id === key) {
           // Create an object with the updated fields that are not empty
@@ -76,16 +69,45 @@ function App() {
       }
       return edu;
       });
-
       setEducation(updatedEducation);
       setEduEditActive(false);
       setDegree(''); setSchool(''); setCity(''); setCountry(''); setStartDate(''); setEndDate('');
-    }
-
+  }
 
   const handleEduEdit = (id) => {
+      setCurrKey(id);
+      setEduEditActive(true);
+  }
+
+
+  const handleProEditSubmit = (e) => {
+    e.preventDefault();
+    const key = currKey;
+
+    const updatedProfessional = professional.map(pro => {
+      if (pro.id === key) {
+          // Create an object with the updated fields that are not empty
+          const updatedFields = {
+              ...(job && { job }),
+              ...(company && { company }),
+              ...(city && { city }),
+              ...(proStartDate&& { proStartDate }),
+              ...(proEndDate && { proEndDate }),
+              ...(description && { description}),
+          };
+          // Merge the updated fields into the existing education entry
+          return { ...pro, ...updatedFields };
+      }
+      return edu;
+      });
+      setProfessional(updatedProfessional);
+      setProEditActive(false);
+  }
+
+  const handleProEdit = (id) => {
     setCurrKey(id);
-    setEduEditActive(true);
+    setProEditActive(true);
+
   }
 
   const handleProSubmit = (e) => {
@@ -94,11 +116,11 @@ function App() {
     setProfessional([...professional, newProfessional]);
     setJob(''); setCompany(''); setProStartDate(''); setProEndDate(''); setDescription('');
     setProResumeActive(true);
+    setProActive(false);
   }
 
   const handleGenSubmit = (e) => {
     e.preventDefault();
-    console.log('Gen pressed');
   }
 
   const handleEduDelete = (id) => {
@@ -149,28 +171,26 @@ function App() {
                   name={'Professional Experience'} />
             </div>
             {professional.map(pro => (
-                  <ProfessionalFormItem onDelete={handleProDelete} key={pro.id} id={pro.id} job={job} company={company} proStartDate={proStartDate} proEndDate={proEndDate} description={description}  />
+                  <ProfessionalFormItem onDelete={handleProDelete} onEdit={handleProEdit} key={pro.id} id={pro.id} job={pro.job} company={pro.company} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}  />
               ))}
 
             {proActive && (
                     <div>
                     <form onSubmit={handleProSubmit}>
                       <ProfessionalContainerForm job ={job} setJob={setJob} company={company} setCompany={setCompany} proStartDate={proStartDate} setProStartDate={setProStartDate}
-                             proEndDate={proEndDate} setProEndDate={setProEndDate}/>
-                      <div class="label-container">
-                          <label>Description</label>
-                          <textarea className="description"
-                              placeholder="Main Tasks"
-                              value={description}
-                              onChange={(e) => setDescription(e.target.value)}>
-                          </textarea>
-                      </div>
-                      <div class="btn-container">
-                          <button>Save</button>
-                      </div>
+                             proEndDate={proEndDate} setProEndDate={setProEndDate} setDescription={setDescription} description={description}/>
                     </form>
                 </div>
                   )}
+
+                {proEditActive && (
+                  <>
+                    <form onSubmit={handleProEditSubmit}>
+                      <ProfessionalEditForm  job ={job} setJob={setJob} company={company} setCompany={setCompany} proStartDate={proStartDate} setProStartDate={setProStartDate}
+                             proEndDate={proEndDate} setProEndDate={setProEndDate} setDescription={setDescription} description={description}/>
+                    </form>
+                  </>
+                )}
           </div>
 
           <div className="general-container">
@@ -192,7 +212,7 @@ function App() {
         </div>
 
         <div className="right-side">
-          <div className="Resume">
+          <div className="Resume" id="Resume">
             <ResumeHeader name={fullName} email={email} phone={phone} cityProv={cityProv}/>
             {eduResumeActive && (
               <>
@@ -217,7 +237,6 @@ function App() {
           </div>
         </div>
       </div>
-
     </>
   )
 }
