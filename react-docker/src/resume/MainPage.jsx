@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './App.css'
-import Header from './Header'
+import Header from './components/Header'
 import FormContainer from './form/FormContainer';
 import EducationContainerForm from './education/EducationFormContainer';
 import ProfessionalContainerForm from './professional/ProfessionalContainerForm';
-import GeneralFormContainer from './GeneralFormContainer';
+import GeneralFormContainer from './components/GeneralFormContainer';
 import EducationFormItem from './education/EducationFormItem';
 import ResumeHeader from './resume/ResumeHeader';
 import ResumeEducation from './resume/ResumeEducation';
@@ -13,7 +13,7 @@ import ProfessionalFormItem from './professional/ProfessionalFormItem';
 import EducationEditForm from './education/EducationEditForm';
 import ProfessionalEditForm from './professional/ProfessionalEditForm';
 
-function App() {
+function MainPage() {
   const [currKey, setCurrKey] = useState('');
   const [genActive, setGenActive] = useState(false); const [eduActive, setEduActive] = useState(false); const [proActive, setProActive] = useState(false);
 
@@ -240,4 +240,4 @@ function App() {
     </>
   )
 }
-export default App
+export default MainPage

@@ -1,4 +1,4 @@
-import Form from "./form/Form";
+import Form from "../form/Form";
 const GeneralFormContainer = ({fullName, setFullName, email ,setEmail ,phone ,setPhone, cityProv, setCityProv}) => {
     return (
         <>
