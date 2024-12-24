@@ -1,19 +1,19 @@
 import { useState } from 'react'
-import './App.css'
-import Header from './components/Header'
-import FormContainer from './form/FormContainer';
-import EducationContainerForm from './education/EducationFormContainer';
-import ProfessionalContainerForm from './professional/ProfessionalContainerForm';
-import GeneralFormContainer from './components/GeneralFormContainer';
-import EducationFormItem from './education/EducationFormItem';
-import ResumeHeader from './resume/ResumeHeader';
-import ResumeEducation from './resume/ResumeEducation';
-import ResumeProfessional from './resume/ResumeProfessional ';
-import ProfessionalFormItem from './professional/ProfessionalFormItem';
-import EducationEditForm from './education/EducationEditForm';
-import ProfessionalEditForm from './professional/ProfessionalEditForm';
+import '../App.css'
+import Header from './Header'
+import FormContainer from '../form/FormContainer';
+import EducationContainerForm from '../education/EducationFormContainer';
+import ProfessionalContainerForm from '../professional/ProfessionalContainerForm';
+import GeneralFormContainer from './GeneralFormContainer';
+import EducationFormItem from '../education/EducationFormItem';
+import ResumeHeader from '../resume/ResumeHeader';
+import ResumeEducation from '../resume/ResumeEducation';
+import ResumeProfessional from '../resume/ResumeProfessional ';
+import ProfessionalFormItem from '../professional/ProfessionalFormItem';
+import EducationEditForm from '../education/EducationEditForm';
+import ProfessionalEditForm from '../professional/ProfessionalEditForm';
 
-function MainPage() {
+function Home() {
   const [currKey, setCurrKey] = useState('');
   const [genActive, setGenActive] = useState(false); const [eduActive, setEduActive] = useState(false); const [proActive, setProActive] = useState(false);
 
@@ -36,7 +36,7 @@ function MainPage() {
   //Form arrays
   const [education, setEducation] = useState([]); const [professional, setProfessional] = useState([]);
 
-  //edit buttons
+  //Edit buttons
   const [eduEditActive, setEduEditActive] = useState(false); const [proEditActive, setProEditActive] = useState(false);
 
   const handleEduSubmit = (e) => {
@@ -55,7 +55,7 @@ function MainPage() {
 
     const updatedEducation = education.map(edu => {
       if (edu.id === key) {
-          // Create an object with the updated fields that are not empty
+          // Creates an object with the updated fields that are not empty
           const updatedFields = {
               ...(degree && { degree }),
               ...(school && { school }),
@@ -64,7 +64,7 @@ function MainPage() {
               ...(startDate && { startDate }),
               ...(endDate && { endDate }),
           };
-          // Merge the updated fields into the existing education entry
+          // Merges the updated fields into the existing education entry
           return { ...edu, ...updatedFields };
       }
       return edu;
@@ -86,7 +86,7 @@ function MainPage() {
 
     const updatedProfessional = professional.map(pro => {
       if (pro.id === key) {
-          // Create an object with the updated fields that are not empty
+          // Creates an object with the updated fields that are not empty
           const updatedFields = {
               ...(job && { job }),
               ...(company && { company }),
@@ -95,7 +95,7 @@ function MainPage() {
               ...(proEndDate && { proEndDate }),
               ...(description && { description}),
           };
-          // Merge the updated fields into the existing education entry
+          // Merges the updated fields into the existing education entry
           return { ...pro, ...updatedFields };
       }
       return edu;
@@ -132,7 +132,6 @@ function MainPage() {
 
   return (
     <>
-      <Header />
       <div className="bottom">
         <div className="left-side">
           <div className="education-container">
@@ -240,4 +239,4 @@ function MainPage() {
     </>
   )
 }
-export default MainPage
+export default Home
