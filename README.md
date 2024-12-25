@@ -16,6 +16,7 @@ The following **extensions** and tools were implemented:
 * React
 * Tailwind
 * Jspdf
+* Docker
 
 ## Layout Images
 
