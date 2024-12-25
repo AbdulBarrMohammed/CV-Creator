@@ -14,13 +14,14 @@ const FormContainer = ({ Active, setActive, name}) => {
   }
   return (
         <>
-            <div className="icon-container">
+            <div className="">
 
-                <img src={pic} alt="School"/>
                 <h2>{name}</h2>
+                <img className='h-20' src={pic} alt="School"/>
+
             </div>
             <button onClick={() => setActive(!Active)}>
-                <img className="downBtn" src={downBtn} alt="Toggle"/>
+                <img className="h-10" src={downBtn} alt="Toggle"/>
             </button>
         </>
 

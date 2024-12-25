@@ -1,6 +1,6 @@
 function EducationFormItem ({id, degree, school, city, country, startDate, endDate, onDelete, onEdit}) {
     return (
-        <div class="formItem">
+        <div class="flex flex-col gap-3">
             <div class="leftFormItem">
                 <h4>{degree}</h4>
                 <p>{school}</p>

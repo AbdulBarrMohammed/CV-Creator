@@ -1,9 +1,10 @@
 
 import Form from '../form/Form';
+import '../App.css'
 const ProfessionalContainerForm = ({job, setJob, company, setCompany, proStartDate, setProStartDate, proEndDate, setProEndDate, setDescription, description}) => {
     return (
         <>
-                            <Form
+                        <Form
                               label="Job Title"
                               type = 'text'
                               placeholder="Enter Job Title"
@@ -40,7 +41,7 @@ const ProfessionalContainerForm = ({job, setJob, company, setCompany, proStartDa
                           </textarea>
                       </div>
                       <div class="btn-container">
-                          <button>Save</button>
+                          <button className='bg-[#2356F6]'>Save</button>
                       </div>
 
 

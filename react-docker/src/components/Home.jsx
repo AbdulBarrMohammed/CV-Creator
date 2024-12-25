@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import '../App.css'
-import Header from './Header'
 import FormContainer from '../form/FormContainer';
 import EducationContainerForm from '../education/EducationFormContainer';
 import ProfessionalContainerForm from '../professional/ProfessionalContainerForm';
@@ -12,6 +11,8 @@ import ResumeProfessional from '../resume/ResumeProfessional ';
 import ProfessionalFormItem from '../professional/ProfessionalFormItem';
 import EducationEditForm from '../education/EducationEditForm';
 import ProfessionalEditForm from '../professional/ProfessionalEditForm';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 function Home() {
   const [currKey, setCurrKey] = useState('');
@@ -130,10 +131,40 @@ function Home() {
     setProfessional(professional.filter(pro => pro.id !== id));
   }
 
+
+  const handleDownload = () => {
+    const input = document.getElementById('Resume');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    html2canvas(input, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = pdfWidth;
+      const pageHeight = pdfHeight;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('download.pdf');
+    }).catch((err) => console.error('Failed to generate PDF', err));
+  };
+
   return (
     <>
-      <div className="bottom">
-        <div className="left-side">
+      <div className="bottom bg-slate-100">
+        <div className="flex flex-col gap-y-5 pt-5">
           <div className="education-container">
             <div className="education">
               <FormContainer Active={eduActive}
@@ -208,6 +239,10 @@ function Home() {
                     </div>
                   )}
           </div>
+          <div className='flex items-start py-5'>
+            <button onClick={handleDownload} className='bg-[#2356F6] rounded-full text-white px-7 py-2 text-center'>Download</button>
+          </div>
+
         </div>
 
         <div className="right-side">
@@ -215,7 +250,7 @@ function Home() {
             <ResumeHeader name={fullName} email={email} phone={phone} cityProv={cityProv}/>
             {eduResumeActive && (
               <>
-                <h3>Education</h3>
+                <h3 className='pb-2'>Education</h3>
                 <div class="line"></div>
               </>
 
@@ -225,7 +260,7 @@ function Home() {
               ))}
             {proResumeActive && (
               <>
-                <h3>Work Experience</h3>
+                <h3 className='pb-2'>Work Experience</h3>
                 <div class="line"></div>
               </>
             )}
@@ -234,8 +269,13 @@ function Home() {
             ))}
 
           </div>
+
         </div>
+
+
+
       </div>
+
     </>
   )
 }

@@ -45,9 +45,9 @@ const EducationContainerForm = ({degree, setDegree, school, setSchool, city, set
                               onChange={(e) => setEndDate(e.target.value)}
                             />
 
-<div class="btn-container">
-                                  <button>Save</button>
-                              </div>
+    <div class="btn-container">
+      <button>Save</button>
+    </div>
         </>
     );
   };
