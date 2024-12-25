@@ -6,12 +6,12 @@ Resume Swift that allows college students to quickly make a resume by providing 
 
 The following **required** functionality is completed:
 
-* [ ] User enters their education, work experience and skills
+* [ ] User enters their education, work experience and skills and be able to see real time updates made to their resume
 * [ ] Users can delete any information they previously added to the resume
 * [ ] The user edit any information they previously added to the resume
 * [ ] The user can press the download button to download the resume as a pdf
 
-The following **extensions** are implemented:
+The following **extensions** and tools were implemented:
 
 * React
 * Tailwind
