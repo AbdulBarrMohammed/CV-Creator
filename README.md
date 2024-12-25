@@ -21,7 +21,8 @@ The following **extensions** are implemented:
 
 
 
-##Layout Images
+## Layout Images
+
 <img width="1439" alt="Screenshot 2024-12-24 at 8 40 21 PM" src="https://github.com/user-attachments/assets/69b34265-c36d-47a6-a61c-6e05fa5da972" />
 
 
