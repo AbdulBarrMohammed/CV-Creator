@@ -1,5 +1,5 @@
-# CVmaker
-Cv maker that allows college students to quickly make a resume by providing basic information like their work experience, skills and education. They will then be allowed to download the cv as a pdf to their computer.
+# Resume Swift
+Resume Swift that allows college students to quickly make a resume by providing basic information like their work experience, skills and education. They will then be allowed to download the cv as a pdf to their computer.
 
 
 ## Functionality 
@@ -14,9 +14,15 @@ The following **required** functionality is completed:
 The following **extensions** are implemented:
 
 * React
-* 
+* Tailwind
+* Jspdf
 
 ## Video Walkthrough
+
+
+
+##Layout Images
+<img width="1440" alt="Screenshot 2024-12-24 at 8 40 21 PM" src="https://github.com/user-attachments/assets/bec1808c-c980-436b-a736-9e1b4b030902" />
 
 
 
