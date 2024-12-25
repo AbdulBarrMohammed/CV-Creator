@@ -29,7 +29,7 @@ The following **extensions** and tools were implemented:
 
 ## Notes
 
-I faced the challenge of trying to figure out a way to display what the user was currently entering in the information inputs onto the resume. I also faced the challenge of deleting and editing the information the user put onto the resume. I finally faced the challange of figuring out a way to grab the resume with all the users information on it and download it as a pdf in my code
+I faced the challenge of trying to figure out a way to display what the user was currently entering in the information inputs onto the resume. I also faced the challenge of figuring out a way of deleting and editing the information the user put onto the resume. I finally faced the challange of figuring out a way to grab the resume with all the users information on it and download it as a pdf in my code.
  
 
 
