@@ -240,7 +240,7 @@ function Home() {
                   )}
           </div>
           <div className='flex items-start py-5'>
-            <button onClick={handleDownload} className='bg-[#2356F6] rounded-full text-white px-7 py-2 text-center'>Download</button>
+            <button onClick={handleDownload} className='bg-[#2356F6] rounded-full text-white px-7 py-2 text-center hover:bg-[#00c6ff] transition-all duration-300 ease-in-out'>Download</button>
           </div>
 
         </div>

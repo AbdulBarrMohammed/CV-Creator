@@ -22,7 +22,7 @@ export function Landing() {
                             it as a pdf, with no fees or hidden fees, with no need
                             to create accounts.
                         </p>
-                        <button onClick={handleClick}className='bg-[#2356F6] rounded-full text-white px-7 py-3 text-center mt-7'>Create Resume</button>
+                        <button onClick={handleClick}className='bg-[#2356F6] rounded-full text-white px-7 py-3 text-center mt-7 hover:bg-[#00c6ff] transition-all duration-300 ease-in-out'>Create Resume</button>
                     </div>
                 </div>
             </div>
