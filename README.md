@@ -1,5 +1,5 @@
 # Resume Swift
-Resume Swift that allows college students to quickly make a resume by providing basic information like their work experience, skills and education. They will then be allowed to download the cv as a pdf to their computer.
+Resume Swift allows college students to quickly make a resume by providing basic information that include their work experience, contact information and education. They will then be allowed to download the resume as a pdf to their computer.
 
 
 ## Functionality 
@@ -16,10 +16,6 @@ The following **extensions** and tools were implemented:
 * React
 * Tailwind
 * Jspdf
-
-## Video Walkthrough
-
-
 
 ## Layout Images
 
