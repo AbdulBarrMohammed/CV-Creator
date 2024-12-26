@@ -1,5 +1,5 @@
 import Form from '../form/Form';
-const EducationContainerForm = ({degree, setDegree, degreeType, setDegreeType, school, setSchool, city, setCity, country, setCountry, startDate, setStartDate, endDate, setEndDate}) => {
+const EducationContainerForm = ({degree, setDegree, degreeType, setDegreeType, school, setSchool, city, setCity, country, setCountry, startDate, setStartDate, endDate, setEndDate, gpa, setGpa}) => {
     return (
         <>
                          <Form
@@ -15,6 +15,13 @@ const EducationContainerForm = ({degree, setDegree, degreeType, setDegreeType, s
                               placeholder="Enter Degree Type / Bachelors"
                               value = {degreeType}
                               onChange={(e) => setDegreeType(e.target.value)}
+                            />
+                            <Form
+                              label="Gpa"
+                              type="text"
+                              placeholder="0.0"
+                              value={gpa}
+                              onChange={(e) => setGpa(e.target.value)}
                             />
                             <Form
                               label="School"

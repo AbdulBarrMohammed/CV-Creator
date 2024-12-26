@@ -1,4 +1,4 @@
-function ResumeEducation ({id, degree, degreeType, school, city, country, startDate, endDate}) {
+function ResumeEducation ({id, degree, degreeType, school, city, country, startDate, endDate, gpa}) {
 
     return (
         <div class="flex justify-between pt-1 mb-5">
@@ -8,8 +8,10 @@ function ResumeEducation ({id, degree, degreeType, school, city, country, startD
                     <p>{degreeType},</p>
                     <p>{degree}</p>
                 </div>
+
             </div>
             <div class="">
+                <p>Cummilative GPA: {gpa}</p>
                 <p>{startDate} - {endDate}</p>
             </div>
         </div>

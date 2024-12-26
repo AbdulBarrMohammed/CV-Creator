@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 
-function ResumeProfessional ({id, job, company, location, proStartDate, proEndDate, description}) {
+function ResumeProject ({id, title, tools, projectDescription, dateCompleted}) {
 
     const [desc, setDesc] = useState([]);
-    const descArray = description.split(';')
+    const descArray = projectDescription.split(';')
 
     useEffect(() => {
         setDesc(descArray)
-        console.log(desc)
-        console.log(descArray)
     }, [])
 
 
     return (
         <div class="flex justify-between pt-1 mb-5">
             <div class="flex flex-col">
-                <p><span class="wordBold">{company}</span></p>
-                <p>{job}</p>
-
+                <div className="flex gap-1">
+                    <p><span class="wordBold">{title}</span></p>
+                    <p>|</p>
+                    <p>{tools}</p>
+                </div>
                 <ul className="list-disc ml-7">
                     {desc.map((d, index) => (
                         <li key={index} className="resumeDescription">
@@ -28,13 +28,13 @@ function ResumeProfessional ({id, job, company, location, proStartDate, proEndDa
 
 
             </div>
-            <div class="flex flex-col">
-                <p className="font-bold flex justify-end">{location}</p>
-                <p>{proStartDate} - {proEndDate}</p>
+            <div class="">
+                <p className="font-bold">{dateCompleted}</p>
+
             </div>
         </div>
 
     );
 }
 
-export default ResumeProfessional;
+export default ResumeProject;
