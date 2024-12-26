@@ -22,6 +22,7 @@ function Home() {
 
   //Education states
   const [degree, setDegree] = useState('');
+  const [degreeType, setDegreeType] = useState('');
   const [school, setSchool] = useState('');
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
@@ -29,7 +30,12 @@ function Home() {
   const [endDate, setEndDate] = useState('');
 
   //Professional Experience states
-  const [job, setJob] = useState(''); const [company, setCompany] = useState(''); const [proStartDate, setProStartDate] = useState(''); const [proEndDate, setProEndDate] = useState(''); const [description, setDescription] = useState('');
+  const [job, setJob] = useState('');
+  const [company, setCompany] = useState('');
+  const [location, setLocation] = useState('');
+  const [proStartDate, setProStartDate] = useState('');
+  const [proEndDate, setProEndDate] = useState('');
+  const [description, setDescription] = useState('');
 
   //General Information states
   const [fullName, setFullName] = useState(''); const [email, setEmail] = useState(''); const [phone, setPhone] = useState(''); const [cityProv, setCityProv] = useState('');
@@ -42,10 +48,13 @@ function Home() {
 
   const handleEduSubmit = (e) => {
     e.preventDefault();
-    const newEducation = { id: self.crypto.randomUUID(), degree: degree, school: school, city: city, country: country, startDate: startDate, endDate: endDate };
+
+    //Creates new education object and adds it to education list
+    const newEducation = { id: self.crypto.randomUUID(), degree: degree, degreeType: degreeType, school: school, city: city, country: country, startDate: startDate, endDate: endDate };
     setEducation([...education, newEducation]);
+
     // Clear input fields
-    setDegree(''); setSchool(''); setCity(''); setCountry(''); setStartDate(''); setEndDate('');
+    setDegree('');  setDegreeType(''), setSchool(''); setCity(''); setCountry(''); setStartDate(''); setEndDate('');
     setEduResumeActive(true);
     setEduActive(false);
   };
@@ -59,6 +68,7 @@ function Home() {
           // Creates an object with the updated fields that are not empty
           const updatedFields = {
               ...(degree && { degree }),
+              ...(degreeType && {degreeType}),
               ...(school && { school }),
               ...(city && { city }),
               ...(country && { country }),
@@ -72,7 +82,7 @@ function Home() {
       });
       setEducation(updatedEducation);
       setEduEditActive(false);
-      setDegree(''); setSchool(''); setCity(''); setCountry(''); setStartDate(''); setEndDate('');
+      setDegree(''); setDegreeType(''), setSchool(''); setCity(''); setCountry(''); setStartDate(''); setEndDate('');
   }
 
   const handleEduEdit = (id) => {
@@ -91,7 +101,7 @@ function Home() {
           const updatedFields = {
               ...(job && { job }),
               ...(company && { company }),
-              ...(city && { city }),
+              ...(location && { location }),
               ...(proStartDate&& { proStartDate }),
               ...(proEndDate && { proEndDate }),
               ...(description && { description}),
@@ -100,6 +110,7 @@ function Home() {
           return { ...pro, ...updatedFields };
       }
       return edu;
+
       });
       setProfessional(updatedProfessional);
       setProEditActive(false);
@@ -113,7 +124,7 @@ function Home() {
 
   const handleProSubmit = (e) => {
     e.preventDefault();
-    const newProfessional = { id: self.crypto.randomUUID(), job: job, company: company, proStartDate: proStartDate, proEndDate: proEndDate, description: description };
+    const newProfessional = { id: self.crypto.randomUUID(), job: job, company: company, location: location, proStartDate: proStartDate, proEndDate: proEndDate, description: description };
     setProfessional([...professional, newProfessional]);
     setJob(''); setCompany(''); setProStartDate(''); setProEndDate(''); setDescription('');
     setProResumeActive(true);
@@ -173,13 +184,13 @@ function Home() {
                   />
             </div>
             {education.map(edu => (
-                  <EducationFormItem onDelete={handleEduDelete} onEdit={handleEduEdit} key={edu.id} id={edu.id} degree={edu.degree} city={edu.city} school={edu.school} country={edu.country} startDate={edu.startDate} endDate={edu.endDate}  />
+                  <EducationFormItem onDelete={handleEduDelete} onEdit={handleEduEdit} key={edu.id} id={edu.id} degree={edu.degree} degreeType={edu.degreeType} city={edu.city} school={edu.school} country={edu.country} startDate={edu.startDate} endDate={edu.endDate}  />
               ))}
 
             {eduActive && (
                       <div>
                           <form onSubmit={handleEduSubmit}>
-                            <EducationContainerForm degree ={degree} setDegree={setDegree} school={school} setSchool={setSchool} city={city} setCity={setCity}
+                            <EducationContainerForm degree ={degree} setDegree={setDegree} degreeType={degreeType} setDegreeType={setDegreeType} school={school} setSchool={setSchool} city={city} setCity={setCity}
                                 country={country} setCountry={setCountry} startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}/>
                           </form>
                       </div>
@@ -187,7 +198,7 @@ function Home() {
               {eduEditActive && (
                 <>
                     <form onSubmit={handleEduEditSubmit}>
-                            <EducationEditForm degree ={degree} setDegree={setDegree} school={school} setSchool={setSchool} city={city} setCity={setCity}
+                            <EducationEditForm degree ={degree} setDegree={setDegree} degreeType={degreeType} setDegreeType={setDegreeType} school={school} setSchool={setSchool} city={city} setCity={setCity}
                                 country={country} setCountry={setCountry} startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}/>
                     </form>
                 </>
@@ -201,13 +212,13 @@ function Home() {
                   name={'Professional Experience'} />
             </div>
             {professional.map(pro => (
-                  <ProfessionalFormItem onDelete={handleProDelete} onEdit={handleProEdit} key={pro.id} id={pro.id} job={pro.job} company={pro.company} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}  />
+                  <ProfessionalFormItem onDelete={handleProDelete} onEdit={handleProEdit} key={pro.id} id={pro.id} job={pro.job} location={pro.location} company={pro.company} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}  />
               ))}
 
             {proActive && (
                     <div>
                     <form onSubmit={handleProSubmit}>
-                      <ProfessionalContainerForm job ={job} setJob={setJob} company={company} setCompany={setCompany} proStartDate={proStartDate} setProStartDate={setProStartDate}
+                      <ProfessionalContainerForm job ={job} setJob={setJob} company={company} setCompany={setCompany} location={location} setLocation={setLocation} proStartDate={proStartDate} setProStartDate={setProStartDate}
                              proEndDate={proEndDate} setProEndDate={setProEndDate} setDescription={setDescription} description={description}/>
                     </form>
                 </div>
@@ -216,12 +227,13 @@ function Home() {
                 {proEditActive && (
                   <>
                     <form onSubmit={handleProEditSubmit}>
-                      <ProfessionalEditForm  job ={job} setJob={setJob} company={company} setCompany={setCompany} proStartDate={proStartDate} setProStartDate={setProStartDate}
+                      <ProfessionalEditForm  job ={job} setJob={setJob} company={company} setCompany={setCompany} location={location} setLocation={setLocation} proStartDate={proStartDate} setProStartDate={setProStartDate}
                              proEndDate={proEndDate} setProEndDate={setProEndDate} setDescription={setDescription} description={description}/>
                     </form>
                   </>
                 )}
           </div>
+
 
           <div className="general-container">
             <div className="general">
@@ -256,7 +268,7 @@ function Home() {
 
               )}
             {education.map(edu => (
-              <ResumeEducation key={edu.id} id={edu.id} degree={edu.degree} school={edu.school} city={edu.city} country={edu.country} startDate={edu.startDate} endDate={edu.endDate}/>
+              <ResumeEducation key={edu.id} id={edu.id} degree={edu.degree} degreeType={edu.degreeType} school={edu.school} city={edu.city} country={edu.country} startDate={edu.startDate} endDate={edu.endDate}/>
               ))}
             {proResumeActive && (
               <>
@@ -265,7 +277,7 @@ function Home() {
               </>
             )}
             {professional.map(pro  => (
-                <ResumeProfessional key={pro.id} id={pro.id} job={pro.job} company={pro.company} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}/>
+                <ResumeProfessional key={pro.id} id={pro.id} job={pro.job} company={pro.company} location={pro.location} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}/>
             ))}
 
           </div>

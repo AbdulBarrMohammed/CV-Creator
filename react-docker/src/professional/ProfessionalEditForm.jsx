@@ -1,6 +1,6 @@
 import FormEdit from "../form/FormEdit";
 
-function ProfessionalEditForm ({job, setJob, company, setCompany, proStartDate, setProStartDate, proEndDate, setProEndDate, setDescription, description}) {
+function ProfessionalEditForm ({job, setJob, company, setCompany, location, setLocation, proStartDate, setProStartDate, proEndDate, setProEndDate, setDescription, description}) {
     return (
         <>
            <FormEdit
@@ -16,6 +16,13 @@ function ProfessionalEditForm ({job, setJob, company, setCompany, proStartDate, 
                               placeholder="Enter Company"
                               value={company}
                               onChange={(e) => setCompany(e.target.value)}
+                            />
+                            <FormEdit
+                              label="Location"
+                              type="text"
+                              placeholder="Enter City, State"
+                              value={location}
+                              onChange={(e) => setLocation(e.target.value)}
                             />
                             <FormEdit
                               label="Start Date"

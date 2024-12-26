@@ -1,8 +1,9 @@
-function EducationFormItem ({id, degree, school, city, country, startDate, endDate, onDelete, onEdit}) {
+function EducationFormItem ({id, degree, degreeType, school, city, country, startDate, endDate, onDelete, onEdit}) {
     return (
         <div class="flex flex-col gap-3">
             <div class="leftFormItem">
                 <h4>{degree}</h4>
+                <h2>{degreeType}</h2>
                 <p>{school}</p>
                 <p>{city}, {country}</p>
                 <p>{startDate} - {endDate}</p>

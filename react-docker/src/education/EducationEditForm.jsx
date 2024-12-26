@@ -1,6 +1,6 @@
 import FormEdit from "../form/FormEdit";
 
-function EducationEditForm ({degree, setDegree, school, setSchool, city, setCity, country, setCountry, startDate, setStartDate, endDate, setEndDate}) {
+function EducationEditForm ({degree, setDegree, degreeType, setDegreeType, school, setSchool, city, setCity, country, setCountry, startDate, setStartDate, endDate, setEndDate}) {
     return (
         <>
             <FormEdit
@@ -9,6 +9,14 @@ function EducationEditForm ({degree, setDegree, school, setSchool, city, setCity
                               placeholder="Enter Degree / Field of Study"
                               value = {degree}
                               onChange={(e) => setDegree(e.target.value)}
+                            />
+
+          <FormEdit
+                              label="Degree Type"
+                              type = 'text'
+                              placeholder="Enter Degree Type / Bachelors "
+                              value = {degreeType}
+                              onChange={(e) => setDegreeType(e.target.value)}
                             />
                             <FormEdit
                               label="School"

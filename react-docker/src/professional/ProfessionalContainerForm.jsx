@@ -1,7 +1,7 @@
 
 import Form from '../form/Form';
 import '../App.css'
-const ProfessionalContainerForm = ({job, setJob, company, setCompany, proStartDate, setProStartDate, proEndDate, setProEndDate, setDescription, description}) => {
+const ProfessionalContainerForm = ({job, setJob, company, setCompany, location, setLocation, proStartDate, setProStartDate, proEndDate, setProEndDate, setDescription, description}) => {
     return (
         <>
                         <Form
@@ -17,6 +17,14 @@ const ProfessionalContainerForm = ({job, setJob, company, setCompany, proStartDa
                               placeholder="Enter Company"
                               value={company}
                               onChange={(e) => setCompany(e.target.value)}
+                            />
+
+                          <Form
+                              label="Location"
+                              type="text"
+                              placeholder="Enter City, State"
+                              value={location}
+                              onChange={(e) => setLocation(e.target.value)}
                             />
                             <Form
                               label="Start Date"
@@ -35,7 +43,7 @@ const ProfessionalContainerForm = ({job, setJob, company, setCompany, proStartDa
                         <div class="label-container">
                           <label>Description</label>
                           <textarea className="description"
-                              placeholder="Main Tasks"
+                              placeholder="Enter each task seperated by ;"
                               value={description}
                               onChange={(e) => setDescription(e.target.value)}>
                           </textarea>
