@@ -9,18 +9,18 @@ function ResumeProfessional ({id, job, company, location, proStartDate, proEndDa
         setDesc(descArray)
         console.log(desc)
         console.log(descArray)
-    }, [])
+    }, [description])
 
 
     return (
         <div class="flex justify-between pt-1 mb-5">
             <div class="flex flex-col">
-                <p><span class="wordBold">{company}</span></p>
-                <p>{job}</p>
+                <p className="font-times"><span class="wordBold">{company}</span></p>
+                <p className="font-times">{job}</p>
 
                 <ul className="list-disc ml-7">
                     {desc.map((d, index) => (
-                        <li key={index} className="resumeDescription">
+                        <li key={index} className="font-times">
                             {d}
                         </li>
                     ))}
@@ -28,9 +28,9 @@ function ResumeProfessional ({id, job, company, location, proStartDate, proEndDa
 
 
             </div>
-            <div class="flex flex-col">
-                <p className="font-bold flex justify-end">{location}</p>
-                <p>{proStartDate} - {proEndDate}</p>
+            <div class="flex flex-col font-times">
+                <p className="font-bold flex justify-end font-times">{location}</p>
+                <p className="font-times">{proStartDate} - {proEndDate}</p>
             </div>
         </div>
 

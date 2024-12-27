@@ -30,3 +30,37 @@ export const downloadPDF = () => {
       pdf.save('download.pdf');
     }).catch((err) => console.error('Failed to generate PDF', err));
   };
+
+
+
+
+
+//Professional
+export const handleProEditSubmit = (e, setProfessional, setProEditActive, currProKey, professional, job, company, location, proStartDate, proEndDate, description) => {
+  e.preventDefault();
+  console.log('proj edit submitted')
+  const key = currProKey;
+  console.log('submitted key', key)
+
+  const updatedProfessional = professional.map(pro => {
+    if (pro.id === key) {
+        console.log('WE HAVE FOUND A MATCH')
+        // Creates an object with the updated fields that are not empty
+        const updatedFields = {
+            ...(job && { job }),
+            ...(company && { company }),
+            ...(location && { location }),
+            ...(proStartDate&& { proStartDate }),
+            ...(proEndDate && { proEndDate }),
+            ...(description && { description}),
+        };
+        // Merges the updated fields into the existing education entry
+        return { ...pro, ...updatedFields };
+    }
+    return pro
+
+
+    });
+    setProfessional(updatedProfessional);
+    setProEditActive(false);
+}

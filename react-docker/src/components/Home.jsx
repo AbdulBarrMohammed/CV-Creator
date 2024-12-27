@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
 import FormContainer from '../form/FormContainer';
@@ -16,20 +16,26 @@ import ProjectFormContainer from '../projects/ProjectFormContainer';
 import ResumeProject from '../resume/ResumeProject';
 import ProjectFormItem from '../projects/ProjectFormItem';
 import ProjectEditForm from '../projects/ProjectEditForm';
+import { SkillsFormContainer } from './SkillsFormContainer';
+import ResumeSkills from '../resume/ResumeSkills';
 import { downloadPDF } from '../functions';
+import { handleProEditSubmit } from '../functions';
 
 function Home() {
   const [currKey, setCurrKey] = useState('');
+  const [currProKey, setCurrProKey] = useState('');
   //Active states
   const [genActive, setGenActive] = useState(false);
   const [eduActive, setEduActive] = useState(false);
   const [proActive, setProActive] = useState(false);
   const [projActive, setProjActive] = useState(false);
+  const [skillsActive, setSkillsActive] = useState(false);
 
 
   const [eduResumeActive, setEduResumeActive] = useState(false);
   const [proResumeActive, setProResumeActive] = useState(false);
   const [projResumeActive, setProjResumeActive] = useState(false);
+  const [skillsResumeActive, setSkillsResumeActive] = useState(false);
 
   //Education states
   const [degree, setDegree] = useState('');
@@ -62,6 +68,9 @@ function Home() {
   const [phone, setPhone] = useState('');
   const [cityProv, setCityProv] = useState('');
 
+  //Skills information states
+  const [skills, setSkills] = useState('');
+
 
   //Form arrays
   const [education, setEducation] = useState([]);
@@ -74,6 +83,8 @@ function Home() {
   const [projEditActive, setProjEditActive] = useState(false);
 
 
+
+  //Education functions
   const handleEduSubmit = (e) => {
     e.preventDefault();
 
@@ -107,7 +118,7 @@ function Home() {
           // Merges the updated fields into the existing education entry
           return { ...edu, ...updatedFields };
       }
-      return edu;
+
       });
       setEducation(updatedEducation);
       setEduEditActive(false);
@@ -120,37 +131,44 @@ function Home() {
   }
 
 
-  const handleProEditSubmit = (e) => {
-    e.preventDefault();
-    const key = currKey;
 
-    const updatedProfessional = professional.map(pro => {
-      if (pro.id === key) {
-          // Creates an object with the updated fields that are not empty
-          const updatedFields = {
-              ...(job && { job }),
-              ...(company && { company }),
-              ...(location && { location }),
-              ...(proStartDate&& { proStartDate }),
-              ...(proEndDate && { proEndDate }),
-              ...(description && { description}),
-          };
-          // Merges the updated fields into the existing education entry
-          return { ...pro, ...updatedFields };
-      }
-      return edu;
-
-      });
-      setProfessional(updatedProfessional);
-      setProEditActive(false);
+  //Professtional functions
+  function professionalEditSubmit(e) {
+    handleProEditSubmit(e, setProfessional, setProEditActive, currProKey, professional, job, company, location, proStartDate, proEndDate, description)
+    setJob(''); setCompany(''); setProStartDate(''); setProEndDate(''); setDescription(''); setLocation('')
   }
 
+  const handleProEdit = (id) => {
+    setCurrProKey(id);
+    setProEditActive(true);
+
+  }
+
+  const handleProSubmit = (e) => {
+    e.preventDefault();
+    const newProfessional = { id: self.crypto.randomUUID(), job: job, company: company, location: location, proStartDate: proStartDate, proEndDate: proEndDate, description: description };
+    setProfessional([...professional, newProfessional]);
+    setJob(''); setCompany(''); setProStartDate(''); setProEndDate(''); setDescription(''); setLocation('')
+    setProResumeActive(true);
+    setProActive(false);
+  }
+
+  const handleProDelete = (id) => {
+    setProfessional(professional.filter(pro => pro.id !== id));
+  }
+
+
+
+  /*
   const handleProjEditSubmit = (e) => {
     e.preventDefault();
-    const key = currKey;
+    //const key = currKey;
+    const key = currId
+    console.log('submitted key', key)
 
     const updatedProjects = projects.map(pro => {
       if (pro.id === key) {
+
           // Creates an object with the updated fields that are not empty
           const updatedFields = {
               ...(title  && { title }),
@@ -161,18 +179,15 @@ function Home() {
           // Merges the updated fields into the existing education entry
           return { ...pro, ...updatedFields };
       }
-      return edu;
+
 
       });
       setProjects(updatedProjects);
       setProjEditActive(false);
+      setTools(''); setTitle(''), setProjectDescription(''); setDateCompleted('');
   }
 
-  const handleProEdit = (id) => {
-    setCurrKey(id);
-    setProEditActive(true);
 
-  }
 
   const handleProjEdit = (id) => {
     setCurrKey(id);
@@ -180,20 +195,12 @@ function Home() {
 
   }
 
-  const handleProSubmit = (e) => {
-    e.preventDefault();
-    const newProfessional = { id: self.crypto.randomUUID(), job: job, company: company, location: location, proStartDate: proStartDate, proEndDate: proEndDate, description: description };
-    setProfessional([...professional, newProfessional]);
-    setJob(''); setCompany(''); setProStartDate(''); setProEndDate(''); setDescription('');
-    setProResumeActive(true);
-    setProActive(false);
-  }
 
   const handleProjectSubmit = (e) => {
     e.preventDefault();
     const newProject = { id: self.crypto.randomUUID(), title: title,  tools: tools, projectDescription: projectDescription, dateCompleted: dateCompleted };
     setProjects([...projects, newProject]);
-
+    setTools(''); setTitle(''); setDateCompleted(''); setProjectDescription('');
     setProjResumeActive(true);
     setProjActive(false);
   }
@@ -205,13 +212,10 @@ function Home() {
   const handleEduDelete = (id) => {
       setEducation(education.filter(edu => edu.id !== id))
   }
-  const handleProDelete = (id) => {
-    setProfessional(professional.filter(pro => pro.id !== id));
-  }
 
   const handleProjDelete = (id) => {
     setProjects(projects.filter(proj => proj.id !== id));
-  }
+  } */
 
   function handleDownload() {
     downloadPDF()
@@ -260,7 +264,7 @@ function Home() {
                   setActive={setProActive}
                   name={'Professional Experience'} />
             </div>
-            {professional.map(pro => (
+            {professional?.map(pro => (
                   <ProfessionalFormItem onDelete={handleProDelete} onEdit={handleProEdit} key={pro.id} id={pro.id} job={pro.job} location={pro.location} company={pro.company} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}  />
               ))}
 
@@ -273,9 +277,9 @@ function Home() {
                 </div>
                   )}
 
-                {proEditActive && (
+            {proEditActive && (
                   <>
-                    <form onSubmit={handleProEditSubmit}>
+                    <form onSubmit={professionalEditSubmit}>
                       <ProfessionalEditForm  job ={job} setJob={setJob} company={company} setCompany={setCompany} location={location} setLocation={setLocation} proStartDate={proStartDate} setProStartDate={setProStartDate}
                              proEndDate={proEndDate} setProEndDate={setProEndDate} setDescription={setDescription} description={description}/>
                     </form>
@@ -294,10 +298,10 @@ function Home() {
 
             {genActive && (
                     <div>
-                    <form onSubmit={handleGenSubmit}>
-                    <GeneralFormContainer fullName ={fullName} setFullName={setFullName} email={email} setEmail={setEmail} phone={phone} setPhone={setPhone}
-                        cityProv={cityProv} setCityProv={setCityProv} />
-                    </form>
+                      <form onSubmit={handleGenSubmit}>
+                      <GeneralFormContainer fullName ={fullName} setFullName={setFullName} email={email} setEmail={setEmail} phone={phone} setPhone={setPhone}
+                          cityProv={cityProv} setCityProv={setCityProv} />
+                      </form>
                     </div>
                   )}
           </div>
@@ -335,11 +339,30 @@ function Home() {
               )}
           </div>
 
+
+          {/* Skill */}
+        <div className="rounded-3xl shadow-md w-96 bg-white px-5 py-2">
+          <div className="general">
+                <FormContainer Active={skillsActive}
+                    setActive={setSkillsActive}
+                    name={'Skills'} />
+          </div>
+
+            {skillsActive && (
+                    <div>
+                      <SkillsFormContainer skills={skills} setSkills={setSkills} />
+                    </div>
+              )}
+
+        </div>
+
           <div className='flex items-start py-5'>
             <button onClick={handleDownload} className='bg-[#2356F6] rounded-full text-white px-7 py-2 text-center hover:bg-[#00c6ff] transition-all duration-300 ease-in-out'>Download</button>
           </div>
 
         </div>
+
+
 
 
 
@@ -350,11 +373,16 @@ function Home() {
             <ResumeHeader name={fullName} email={email} phone={phone} cityProv={cityProv}/>
             {eduResumeActive && (
                 <>
+                {education.length != 0 &&
+
+                  <>
                   <div className="flex justify-center">
                     <h3 className='pb-2 font-bold text-lg'>Education</h3>
                   </div>
-
                   <div class="line"></div>
+                  </>
+
+                }
                 </>
 
               )}
@@ -363,11 +391,20 @@ function Home() {
               ))}
             {proResumeActive && (
                 <>
+                {professional.length != 0 &&
+
+                  <>
                   <div className="flex justify-center">
                     <h3 className='pb-2 font-bold text-lg'>Work Experience</h3>
                   </div>
                   <div class="line"></div>
-               </>
+                  </>
+
+
+
+
+                }
+                </>
             )}
             {professional.map(pro  => (
                 <ResumeProfessional key={pro.id} id={pro.id} job={pro.job} company={pro.company} location={pro.location} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}/>
@@ -375,18 +412,25 @@ function Home() {
 
             {projResumeActive && (
               <>
+              {projects.length != 0 &&
+
+                <>
                 <div className="flex justify-center">
                   <h3 className='pb-2 font-bold text-lg'>Projects</h3>
                 </div>
                 <div class="line"></div>
+                </>
+              }
               </>
-
 
             )}
 
             {projects.map(proj  => (
                 <ResumeProject key={proj.id} id={proj.id} title={proj.title} tools={proj.tools} projectDescription={proj.projectDescription} dateCompleted={proj.dateCompleted}/>
             ))}
+
+
+            <ResumeSkills skills={skills}/>
 
           </div>
         </div>

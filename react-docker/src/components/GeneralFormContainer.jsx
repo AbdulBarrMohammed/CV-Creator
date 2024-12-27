@@ -31,9 +31,9 @@ const GeneralFormContainer = ({fullName, setFullName, email ,setEmail ,phone ,se
                               onChange={(e) => setCityProv(e.target.value)}
                             />
 
-<div class="btn-container">
-                          <button>Save</button>
-                      </div>
+          <div class="btn-container">
+              <button>Save</button>
+          </div>
 
         </>
     );

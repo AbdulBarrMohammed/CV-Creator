@@ -5,22 +5,23 @@ function ResumeProject ({id, title, tools, projectDescription, dateCompleted}) {
     const [desc, setDesc] = useState([]);
     const descArray = projectDescription.split(';')
 
+
     useEffect(() => {
         setDesc(descArray)
-    }, [])
+    }, [projectDescription])
 
 
     return (
         <div class="flex justify-between pt-1 mb-5">
             <div class="flex flex-col">
                 <div className="flex gap-1">
-                    <p><span class="wordBold">{title}</span></p>
+                    <p><span class="wordBold font-times">{title}</span></p>
                     <p>|</p>
-                    <p>{tools}</p>
+                    <p className="font-times">{tools}</p>
                 </div>
                 <ul className="list-disc ml-7">
                     {desc.map((d, index) => (
-                        <li key={index} className="resumeDescription">
+                        <li key={index} className="w-96 font-times">
                             {d}
                         </li>
                     ))}
@@ -28,8 +29,8 @@ function ResumeProject ({id, title, tools, projectDescription, dateCompleted}) {
 
 
             </div>
-            <div class="">
-                <p className="font-bold">{dateCompleted}</p>
+            <div class="font-times">
+                <p className="font-bold font-times">{dateCompleted}</p>
 
             </div>
         </div>

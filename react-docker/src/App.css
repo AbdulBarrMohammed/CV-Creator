@@ -12,8 +12,10 @@
     padding: 30px;
     margin-top: 20px;
     margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
 
   }
+
 
 
   .general-container {
@@ -121,7 +123,6 @@
     border: none;
     background-color: #2356F6;
     color: white;
-    border-radius: 5px;
     padding: 10px;
     cursor: pointer;
   }
@@ -138,7 +139,7 @@
   }
 
   .line {
-    height: 2px;
+    height: 1px;
     background-color: black;
 
   }

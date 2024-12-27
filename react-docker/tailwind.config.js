@@ -5,7 +5,11 @@ export default {
     "./index.html",               // Include index.html if using Vite
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        times: ['"Times New Roman"', 'serif'],
+      },
+    },
   },
   plugins: [],
 }
