@@ -16,7 +16,7 @@ export function Landing() {
                 <div className='flex flex-col text-7xl font-semibold text-center leading-tight'>
                     <h1>Create Resumes</h1>
                     <h1 className='blue-gradient_text'>Quickly, Easy And Free</h1>
-                    <h1>For Computer Science Students</h1>
+                    <h1>For Any and All College Student</h1>
                     <div className='font-normal text-2xl text-center px-52 pt-10 gap-5'>
                         <p className='text-slate-500'>Create a professional resume quickly, easy and free that are ATS-friendly with no unnecessary styling, and be able to quickly download
                             it as a pdf, with no fees or hidden fees, with no need
