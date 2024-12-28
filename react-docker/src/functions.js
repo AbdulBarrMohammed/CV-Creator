@@ -2,6 +2,13 @@
 
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+
+
+/**
+    * Downloads resume page as a pdf
+    * @param none
+    * @return none
+  */
 export const downloadPDF = () => {
     const input = document.getElementById('Resume');
     const pdf = new jsPDF('p', 'mm', 'a4');
@@ -36,15 +43,18 @@ export const downloadPDF = () => {
 
 
 //Professional
+
+/**
+    * Creates new professions object and adds it to professions array
+    * @param setProfessional, setProEditActive, currProKey, professional, job, company, location, proStartDate, proEndDate, description
+    * @return none
+  */
 export const handleProEditSubmit = (e, setProfessional, setProEditActive, currProKey, professional, job, company, location, proStartDate, proEndDate, description) => {
   e.preventDefault();
-  console.log('proj edit submitted')
   const key = currProKey;
-  console.log('submitted key', key)
 
   const updatedProfessional = professional.map(pro => {
     if (pro.id === key) {
-        console.log('WE HAVE FOUND A MATCH')
         // Creates an object with the updated fields that are not empty
         const updatedFields = {
             ...(job && { job }),

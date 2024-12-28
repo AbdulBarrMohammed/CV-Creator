@@ -10,7 +10,7 @@ function ResumeEducation ({id, degree, degreeType, school, city, country, startD
                 </div>
 
             </div>
-            <div class="">
+            <div>
                 <p className="font-times"><span className="font-bold">Cummilative GPA:</span> {gpa}</p>
                 <p className="font-times">{startDate} - {endDate}</p>
             </div>

@@ -1,9 +1,9 @@
-function ProjectFormItem ({id, title, tools, projectDescription, dateCompleted, onDelete, onEdit}) {
+function ProjectFormItem ({id, title, tools, dateCompleted, onDelete, onEdit}) {
     return (
 
         <div>
 
-            <div class="flex gap-3 items-center justify-between">
+            <div className="flex gap-3 items-center justify-between">
                 <div class="leftFormItem">
                     <h4>{title}</h4>
                     <p>{tools}</p>

@@ -12,8 +12,8 @@ function ResumeProject ({id, title, tools, projectDescription, dateCompleted}) {
 
 
     return (
-        <div class="flex justify-between pt-1 mb-5">
-            <div class="flex flex-col">
+        <div className="flex justify-between pt-1 mb-5">
+            <div className="flex flex-col">
                 <div className="flex gap-1">
                     <p><span class="wordBold font-times">{title}</span></p>
                     <p>|</p>

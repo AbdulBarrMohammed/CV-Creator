@@ -2,7 +2,7 @@ function EducationFormItem ({id, degree, degreeType, school, city, country, star
     return (
         <div>
 
-            <div class="flex gap-3 items-center justify-between">
+            <div className="flex gap-3 items-center justify-between">
                 <div class="leftFormItem">
                     <h4>{degree}</h4>
                     <h2>{degreeType}</h2>

@@ -67,7 +67,7 @@ export function Landing() {
                     <img src={'../../src/assets/architect.png'} className='h-80'/>
                         <div className='bg-slate-100 p-10 rounded-2xl'>
                             <h1 className='font-semibold'>Enter Education, Experience, and Personal Information</h1>
-                            <p className='w-96'>Enter your professional information that include name, phone number and email, your school and education stats, and any professional work experience that you have </p>
+                            <p className='w-96'>Enter your professional information that include name, phone number and email, your school education stats, and any professional work experience that you have </p>
                         </div>
 
                     </div>

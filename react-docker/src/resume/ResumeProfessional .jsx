@@ -7,14 +7,12 @@ function ResumeProfessional ({id, job, company, location, proStartDate, proEndDa
 
     useEffect(() => {
         setDesc(descArray)
-        console.log(desc)
-        console.log(descArray)
     }, [description])
 
 
     return (
-        <div class="flex justify-between pt-1 mb-5">
-            <div class="flex flex-col">
+        <div className="flex justify-between pt-1 mb-5">
+            <div className="flex flex-col">
                 <p className="font-times"><span class="wordBold">{company}</span></p>
                 <p className="font-times">{job}</p>
 
@@ -28,7 +26,7 @@ function ResumeProfessional ({id, job, company, location, proStartDate, proEndDa
 
 
             </div>
-            <div class="flex flex-col font-times">
+            <div className="flex flex-col font-times">
                 <p className="font-bold flex justify-end font-times">{location}</p>
                 <p className="font-times">{proStartDate} - {proEndDate}</p>
             </div>

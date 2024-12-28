@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import '../App.css'
-import { Link } from 'react-router-dom'
 import FormContainer from '../form/FormContainer';
 import EducationContainerForm from '../education/EducationFormContainer';
 import ProfessionalContainerForm from '../professional/ProfessionalContainerForm';
@@ -22,7 +21,8 @@ import { downloadPDF } from '../functions';
 import { handleProEditSubmit } from '../functions';
 
 function Home() {
-  const [currKey, setCurrKey] = useState('');
+
+  //Keys
   const [currProKey, setCurrProKey] = useState('');
   const [currProjKey, setCurrProjKey] = useState('');
   const [currEduKey, setCurrEduKey] = useState('');
@@ -38,7 +38,6 @@ function Home() {
   const [eduResumeActive, setEduResumeActive] = useState(false);
   const [proResumeActive, setProResumeActive] = useState(false);
   const [projResumeActive, setProjResumeActive] = useState(false);
-  const [skillsResumeActive, setSkillsResumeActive] = useState(false);
 
   //Education states
   const [degree, setDegree] = useState('');
@@ -88,10 +87,16 @@ function Home() {
 
 
   //Education functions
+
+  /**
+    * Add new education object to education list
+    * @param event
+    * @return none
+  */
   const handleEduSubmit = (e) => {
     e.preventDefault();
 
-    //Creates new education object and adds it to education list
+    //Creates new education object and adds it to education array
     const newEducation = { id: self.crypto.randomUUID(), degree: degree, degreeType: degreeType, school: school, city: city, country: country, startDate: startDate, endDate: endDate, gpa: gpa };
     setEducation([...education, newEducation]);
 
@@ -101,10 +106,21 @@ function Home() {
     setEduActive(false);
   };
 
+  /**
+    * Deletes education object from education array
+    * @param id
+    * @return none
+  */
   const handleEduDelete = (id) => {
     setEducation(education.filter(edu => edu.id !== id))
   }
 
+
+  /**
+    * Edits selected education object
+    * @param event
+    * @return none
+  */
   const handleEduEditSubmit = (e) => {
     e.preventDefault();
     const key = currEduKey;
@@ -134,6 +150,11 @@ function Home() {
       setDegree(''); setDegreeType(''), setSchool(''); setCity(''); setCountry(''); setStartDate(''); setEndDate(''); setGpa(0.0);
   }
 
+  /**
+    * Sets current education key to current education object id and opens edit modal for education
+    * @param id
+    * @return none
+  */
   const handleEduEdit = (id) => {
       setCurrEduKey(id);
       setEduEditActive(true);
@@ -143,17 +164,35 @@ function Home() {
 
 
   //Professtional functions
+
+  /**
+    * Edits professions object
+    * @param event
+    * @return none
+  */
   function professionalEditSubmit(e) {
     handleProEditSubmit(e, setProfessional, setProEditActive, currProKey, professional, job, company, location, proStartDate, proEndDate, description)
     setJob(''); setCompany(''); setProStartDate(''); setProEndDate(''); setDescription(''); setLocation('')
   }
 
+
+  /**
+    * Sets current professional key to id of selected object id and opens professions edit modal
+    * @param id
+    * @return none
+  */
   const handleProEdit = (id) => {
     setCurrProKey(id);
     setProEditActive(true);
 
   }
 
+
+  /**
+    * Creates new profession object and adds it to professions array
+    * @param event
+    * @return none
+  */
   const handleProSubmit = (e) => {
     e.preventDefault();
     const newProfessional = { id: self.crypto.randomUUID(), job: job, company: company, location: location, proStartDate: proStartDate, proEndDate: proEndDate, description: description };
@@ -163,18 +202,27 @@ function Home() {
     setProActive(false);
   }
 
+  /**
+    * Deletes profession from profession array by id
+    * @param event
+    * @return none
+  */
   const handleProDelete = (id) => {
     setProfessional(professional.filter(pro => pro.id !== id));
   }
 
 
 
-
   //Project functions
+
+  /**
+    * Edits selected project object
+    * @param event
+    * @return none
+  */
   const handleProjEditSubmit = (e) => {
     e.preventDefault();
     const key = currProjKey
-    console.log('submitted key', key)
 
     const updatedProjects = projects.map(proj => {
       if (proj.id === key) {
@@ -192,7 +240,6 @@ function Home() {
 
       return proj
 
-
       });
       setProjects(updatedProjects);
       setProjEditActive(false);
@@ -200,6 +247,11 @@ function Home() {
   }
 
 
+  /**
+    * Sets current project key to current selected project object id and opens edit project modal
+    * @param id
+    * @return none
+  */
   const handleProjEdit = (id) => {
     setCurrProjKey(id);
     setProjEditActive(true);
@@ -207,6 +259,12 @@ function Home() {
 
   }
 
+
+  /**
+    * Creates new Project object and adds it to project array
+    * @param event
+    * @return none
+  */
   const handleProjectSubmit = (e) => {
     e.preventDefault();
     const newProject = { id: self.crypto.randomUUID(), title: title,  tools: tools, projectDescription: projectDescription, dateCompleted: dateCompleted };
@@ -216,6 +274,11 @@ function Home() {
     setProjActive(false);
   }
 
+  /**
+    * Deletes project object from projects array
+    * @param event
+    * @return none
+  */
   const handleProjDelete = (id) => {
     setProjects(projects.filter(proj => proj.id !== id));
   }
@@ -274,7 +337,7 @@ function Home() {
                   name={'Professional Experience'} />
             </div>
             {professional?.map(pro => (
-                  <ProfessionalFormItem onDelete={handleProDelete} onEdit={handleProEdit} key={pro.id} id={pro.id} job={pro.job} location={pro.location} company={pro.company} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}  />
+                  <ProfessionalFormItem onDelete={handleProDelete} onEdit={handleProEdit} key={pro.id} id={pro.id} job={pro.job} location={pro.location} company={pro.company} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate}  />
               ))}
 
             {proActive && !proEditActive && (
@@ -307,10 +370,11 @@ function Home() {
 
             {genActive && (
                     <div>
-                      <form onSubmit={handleGenSubmit}>
+                      <form>
                       <GeneralFormContainer fullName ={fullName} setFullName={setFullName} email={email} setEmail={setEmail} phone={phone} setPhone={setPhone}
                           cityProv={cityProv} setCityProv={setCityProv} />
                       </form>
+
                     </div>
                   )}
           </div>
@@ -326,7 +390,7 @@ function Home() {
             </div>
 
             {projects.map(pro => (
-                  <ProjectFormItem key={pro.id} id={pro.id} title={pro.title} tools={pro.tools}  projectDescription={pro.projectDescription} dateCompleted={pro.dateCompleted} onDelete={handleProjDelete} onEdit={handleProjEdit}/>
+                  <ProjectFormItem key={pro.id} id={pro.id} title={pro.title} tools={pro.tools} dateCompleted={pro.dateCompleted} onDelete={handleProjDelete} onEdit={handleProjEdit}/>
               ))}
 
             {projActive && !projEditActive && (

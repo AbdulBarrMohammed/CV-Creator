@@ -1,8 +1,8 @@
-function ProfessionalFormItem ({id, job, company, location, proStartDate, proEndDate, description, onDelete, onEdit}) {
+function ProfessionalFormItem ({id, job, company, location, proStartDate, proEndDate, onDelete, onEdit}) {
     return (
 
         <div>
-            <div class="flex gap-5 items-center justify-between">
+            <div className="flex gap-5 items-center justify-between">
                 <div class="leftFormItem">
                     <h4>{job}</h4>
                     <p>{location}</p>
