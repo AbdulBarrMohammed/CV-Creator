@@ -42,7 +42,7 @@ const ProfessionalContainerForm = ({job, setJob, company, setCompany, location, 
                             />
                         <div class="label-container">
                           <label>Description</label>
-                          <textarea className="description"
+                          <textarea className="description h-40"
                               placeholder="Enter each task seperated by ;"
                               value={description}
                               onChange={(e) => setDescription(e.target.value)}>

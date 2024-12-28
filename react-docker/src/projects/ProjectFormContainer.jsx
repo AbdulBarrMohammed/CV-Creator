@@ -30,7 +30,7 @@ const ProjectFormContainer = ({title, setTitle, tools, setTools, projectDescript
 
                             <div class="label-container">
                                 <label>Description</label>
-                                <textarea className="description"
+                                <textarea className="description h-40"
                                     placeholder="Enter each description seperated by ;"
                                     value={projectDescription}
                                     onChange={(e) => setProjectDescription(e.target.value)}>

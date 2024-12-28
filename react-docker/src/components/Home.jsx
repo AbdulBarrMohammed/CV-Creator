@@ -24,6 +24,9 @@ import { handleProEditSubmit } from '../functions';
 function Home() {
   const [currKey, setCurrKey] = useState('');
   const [currProKey, setCurrProKey] = useState('');
+  const [currProjKey, setCurrProjKey] = useState('');
+  const [currEduKey, setCurrEduKey] = useState('');
+
   //Active states
   const [genActive, setGenActive] = useState(false);
   const [eduActive, setEduActive] = useState(false);
@@ -98,9 +101,13 @@ function Home() {
     setEduActive(false);
   };
 
+  const handleEduDelete = (id) => {
+    setEducation(education.filter(edu => edu.id !== id))
+  }
+
   const handleEduEditSubmit = (e) => {
     e.preventDefault();
-    const key = currKey;
+    const key = currEduKey;
 
     const updatedEducation = education.map(edu => {
       if (edu.id === key) {
@@ -119,6 +126,8 @@ function Home() {
           return { ...edu, ...updatedFields };
       }
 
+      return edu
+
       });
       setEducation(updatedEducation);
       setEduEditActive(false);
@@ -126,8 +135,9 @@ function Home() {
   }
 
   const handleEduEdit = (id) => {
-      setCurrKey(id);
+      setCurrEduKey(id);
       setEduEditActive(true);
+      setEduActive(false)
   }
 
 
@@ -159,15 +169,15 @@ function Home() {
 
 
 
-  /*
+
+  //Project functions
   const handleProjEditSubmit = (e) => {
     e.preventDefault();
-    //const key = currKey;
-    const key = currId
+    const key = currProjKey
     console.log('submitted key', key)
 
-    const updatedProjects = projects.map(pro => {
-      if (pro.id === key) {
+    const updatedProjects = projects.map(proj => {
+      if (proj.id === key) {
 
           // Creates an object with the updated fields that are not empty
           const updatedFields = {
@@ -177,8 +187,10 @@ function Home() {
               ...(dateCompleted && { dateCompleted }),
           };
           // Merges the updated fields into the existing education entry
-          return { ...pro, ...updatedFields };
+          return { ...proj, ...updatedFields };
       }
+
+      return proj
 
 
       });
@@ -188,13 +200,12 @@ function Home() {
   }
 
 
-
   const handleProjEdit = (id) => {
-    setCurrKey(id);
+    setCurrProjKey(id);
     setProjEditActive(true);
 
-  }
 
+  }
 
   const handleProjectSubmit = (e) => {
     e.preventDefault();
@@ -205,17 +216,15 @@ function Home() {
     setProjActive(false);
   }
 
+  const handleProjDelete = (id) => {
+    setProjects(projects.filter(proj => proj.id !== id));
+  }
+
+
   const handleGenSubmit = (e) => {
     e.preventDefault();
   }
 
-  const handleEduDelete = (id) => {
-      setEducation(education.filter(edu => edu.id !== id))
-  }
-
-  const handleProjDelete = (id) => {
-    setProjects(projects.filter(proj => proj.id !== id));
-  } */
 
   function handleDownload() {
     downloadPDF()
@@ -239,7 +248,7 @@ function Home() {
                   <EducationFormItem onDelete={handleEduDelete} onEdit={handleEduEdit} key={edu.id} id={edu.id} degree={edu.degree} degreeType={edu.degreeType} city={edu.city} school={edu.school} country={edu.country} startDate={edu.startDate} endDate={edu.endDate} gpa={edu.gpa} />
               ))}
 
-            {eduActive && (
+            {eduActive && !eduEditActive && (
                       <div>
                           <form onSubmit={handleEduSubmit}>
                             <EducationContainerForm degree ={degree} setDegree={setDegree} degreeType={degreeType} setDegreeType={setDegreeType} school={school} setSchool={setSchool} city={city} setCity={setCity}
@@ -268,7 +277,7 @@ function Home() {
                   <ProfessionalFormItem onDelete={handleProDelete} onEdit={handleProEdit} key={pro.id} id={pro.id} job={pro.job} location={pro.location} company={pro.company} proStartDate={pro.proStartDate} proEndDate={pro.proEndDate} description={pro.description}  />
               ))}
 
-            {proActive && (
+            {proActive && !proEditActive && (
                     <div>
                     <form onSubmit={handleProSubmit}>
                       <ProfessionalContainerForm job ={job} setJob={setJob} company={company} setCompany={setCompany} location={location} setLocation={setLocation} proStartDate={proStartDate} setProStartDate={setProStartDate}
@@ -320,7 +329,7 @@ function Home() {
                   <ProjectFormItem key={pro.id} id={pro.id} title={pro.title} tools={pro.tools}  projectDescription={pro.projectDescription} dateCompleted={pro.dateCompleted} onDelete={handleProjDelete} onEdit={handleProjEdit}/>
               ))}
 
-            {projActive && (
+            {projActive && !projEditActive && (
                     <div>
                     <form onSubmit={handleProjectSubmit}>
                     <ProjectFormContainer title={title} setTitle={setTitle} tools={tools} setTools={setTools} projectDescription={projectDescription} setProjectDescription={setProjectDescription}
@@ -329,15 +338,16 @@ function Home() {
                     </div>
                   )}
 
-            { projEditActive && (
+            {projEditActive && (
                 <>
                     <form onSubmit={handleProjEditSubmit}>
-                            <ProjectEditForm title={title} setTitle={setTitle} tools={tools} setTools={setTools} projectDescription={projectDescription} setProjectDescription={setProjectDescription}
-                    dateCompleted={dateCompleted} setDateCompleted={setDateCompleted}/>
+                        <ProjectEditForm title={title} setTitle={setTitle} tools={tools} setTools={setTools} projectDescription={projectDescription} setProjectDescription={setProjectDescription}
+                        dateCompleted={dateCompleted} setDateCompleted={setDateCompleted}/>
                     </form>
                 </>
               )}
           </div>
+
 
 
           {/* Skill */}
@@ -369,7 +379,7 @@ function Home() {
 
         {/* Resume page */}
         <div className="right-side">
-          <div className="Resume" id="Resume">
+          <div className="Resume flex flex-col gap-1" id="Resume">
             <ResumeHeader name={fullName} email={email} phone={phone} cityProv={cityProv}/>
             {eduResumeActive && (
                 <>

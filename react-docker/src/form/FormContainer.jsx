@@ -1,10 +1,11 @@
 import React from 'react';
-import downBtn from '../assets/triangle-small-down.svg';
+import downBtn from '../assets/menu-down.svg';
 import school from '../assets/school.svg';
 import briefcase from '../assets/briefcase.svg';
 import skills from '../assets/skills.png'
 import projects from '../assets/start-up.png'
 import profile from '../assets/user.png'
+import upBtn from '../assets/menu-up.svg'
 
 const FormContainer = ({ Active, setActive, name}) => {
   let pic = school;
@@ -29,7 +30,13 @@ const FormContainer = ({ Active, setActive, name}) => {
 
             </div>
             <button onClick={() => setActive(!Active)}>
-                <img className="h-10" src={downBtn} alt="Toggle"/>
+              {
+                Active && <img className="h-10" src={upBtn} alt="Toggle"/>
+              }
+              {
+                !Active && <img className="h-10" src={downBtn} alt="Toggle"/>
+              }
+
             </button>
         </>
 

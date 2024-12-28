@@ -3,16 +3,15 @@ function ProjectFormItem ({id, title, tools, projectDescription, dateCompleted, 
 
         <div>
 
-            <div class="flex gap-3 items-center">
+            <div class="flex gap-3 items-center justify-between">
                 <div class="leftFormItem">
                     <h4>{title}</h4>
                     <p>{tools}</p>
-                    <p>{projectDescription}</p>
                     <p>{dateCompleted}</p>
                 </div>
                 <div class="rightFormItem">
-                    <button className="rounded-3xl" onClick={() => onDelete(id)}>Delete</button>
-                    <button className="rounded-3xl" onClick={() => onEdit(id)}>Edit</button>
+                    <button className="rounded-3xl hover:bg-[#00c6ff] transition-all duration-300 ease-in-out'" onClick={() => onDelete(id)}>Delete</button>
+                    <button className="rounded-3xl hover:bg-[#00c6ff] transition-all duration-300 ease-in-out'" onClick={() => onEdit(id)}>Edit</button>
                 </div>
             </div>
 

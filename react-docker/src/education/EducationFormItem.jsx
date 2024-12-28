@@ -2,7 +2,7 @@ function EducationFormItem ({id, degree, degreeType, school, city, country, star
     return (
         <div>
 
-            <div class="flex gap-3 items-center">
+            <div class="flex gap-3 items-center justify-between">
                 <div class="leftFormItem">
                     <h4>{degree}</h4>
                     <h2>{degreeType}</h2>
@@ -12,8 +12,8 @@ function EducationFormItem ({id, degree, degreeType, school, city, country, star
                     <p>{startDate} - {endDate}</p>
                 </div>
                 <div class="rightFormItem">
-                    <button className="rounded-3xl" onClick={() => onDelete(id)}>Delete</button>
-                    <button className="rounded-3xl" onClick={() => onEdit(id)}>Edit</button>
+                    <button className="rounded-3xl hover:bg-[#00c6ff] transition-all duration-300 ease-in-out'" onClick={() => onDelete(id)}>Delete</button>
+                    <button className="rounded-3xl hover:bg-[#00c6ff] transition-all duration-300 ease-in-out'" onClick={() => onEdit(id)}>Edit</button>
                 </div>
             </div>
 

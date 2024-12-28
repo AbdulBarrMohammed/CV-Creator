@@ -39,9 +39,9 @@ function ProfessionalEditForm ({job, setJob, company, setCompany, location, setL
                               onChange={(e) => setProEndDate(e.target.value)}
                             />
 
-<div class="label-container">
+                      <div class="label-container">
                             <label>Description</label>
-                            <textarea className="description"
+                            <textarea className="description h-40"
                                 placeholder="Main Tasks"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}>
