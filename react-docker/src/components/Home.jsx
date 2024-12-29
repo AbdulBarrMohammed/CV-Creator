@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../App.css'
 import FormContainer from '../form/FormContainer';
 import EducationContainerForm from '../education/EducationFormContainer';
@@ -86,6 +86,92 @@ function Home() {
 
 
 
+  useEffect(() => {
+    const proBool = localStorage.getItem('proResumeActive')
+    const projBool = localStorage.getItem('projResumeActive')
+    const eduBool = localStorage.getItem('eduResumeActive')
+
+
+    setEmail(localStorage.getItem('email'))
+    setFullName(localStorage.getItem('fullName'))
+    setPhone(localStorage.getItem('phone'))
+    setCityProv(localStorage.getItem('cityProv'))
+    setSkills(localStorage.getItem('skills'))
+
+    setProResumeActive(proBool)
+    setProjResumeActive(projBool)
+    setEduResumeActive(eduBool)
+    setProjects(getInitialProjectState)
+    setProfessional(getInitialProfessionalState)
+    setEducation(getInitialEducationState)
+  }, [])
+
+  const getInitialProjectState = () => {
+    const project = localStorage.getItem("projects");
+    return project ? JSON.parse(project) : []
+
+  }
+
+  const getInitialProfessionalState = () => {
+    const professional= localStorage.getItem("professional");
+    return professional ? JSON.parse(professional) : []
+
+  }
+
+  const getInitialEducationState = () => {
+    const education = localStorage.getItem("education");
+    return education ? JSON.parse(education) : []
+
+  }
+
+  // Project local storage
+  useEffect(() => {
+    if (projects != 0) {
+      localStorage.setItem('projects', JSON.stringify(projects))
+    }
+  }, [projects])
+
+  //Professional local storage
+  useEffect(() => {
+    if (professional != 0) {
+      localStorage.setItem('professional', JSON.stringify(professional))
+    }
+  }, [professional])
+
+
+  //Education local storage
+  useEffect(() => {
+    if (education != 0) {
+      localStorage.setItem('education', JSON.stringify(education))
+    }
+  }, [education])
+
+  //General local storage
+  useEffect(() => {
+
+    if (email && fullName && phone && cityProv) {
+      localStorage.setItem('fullName', fullName)
+      localStorage.setItem('email', email)
+      localStorage.setItem('phone', phone)
+      localStorage.setItem('cityProv', cityProv)
+
+    }
+
+
+  }, [fullName, email, phone, cityProv])
+
+  //Skills local storage
+  useEffect(() => {
+
+    if (skills) {
+      localStorage.setItem('skills', skills)
+    }
+
+  }, [skills])
+
+
+
+
   //Education functions
 
   /**
@@ -104,6 +190,7 @@ function Home() {
     setDegree('');  setDegreeType(''), setSchool(''); setCity(''); setCountry(''); setStartDate(''); setEndDate(''); setGpa(0.0);
     setEduResumeActive(true);
     setEduActive(false);
+    localStorage.setItem('eduResumeActive', true)
   };
 
   /**
@@ -199,7 +286,9 @@ function Home() {
     setProfessional([...professional, newProfessional]);
     setJob(''); setCompany(''); setProStartDate(''); setProEndDate(''); setDescription(''); setLocation('')
     setProResumeActive(true);
+    localStorage.setItem('proResumeActive', true)
     setProActive(false);
+
   }
 
   /**
@@ -272,6 +361,8 @@ function Home() {
     setTools(''); setTitle(''); setDateCompleted(''); setProjectDescription('');
     setProjResumeActive(true);
     setProjActive(false);
+    localStorage.setItem('projResumeActive', true)
+
   }
 
   /**
@@ -282,12 +373,6 @@ function Home() {
   const handleProjDelete = (id) => {
     setProjects(projects.filter(proj => proj.id !== id));
   }
-
-
-  const handleGenSubmit = (e) => {
-    e.preventDefault();
-  }
-
 
   function handleDownload() {
     downloadPDF()
