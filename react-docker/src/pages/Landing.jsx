@@ -1,5 +1,11 @@
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
+import badge from '../assets/badge.png'
+import running from '../assets/running.png'
+import free from '../assets/free-2.png'
+import arc from '../assets/architect.png'
+import barrier from '../assets/barrier.png'
+import project from '../assets/project.png'
 
 export function Landing() {
 
@@ -30,7 +36,7 @@ export function Landing() {
                 <h1 className='font-semibold text-3xl'>How We Can Help</h1>
                 <div className='flex gap-20 text-lg py-20 px-10'>
                     <div className='flex gap-3'>
-                        <img className='h-20' src={'../../src/assets/badge.png'}/>
+                        <img className='h-20' src={badge}/>
                         <div>
                             <h1 className='font-semibold'>Professional Layout</h1>
                             <p>We offer you a way to professional resume layout that is ats-friendly </p>
@@ -39,7 +45,7 @@ export function Landing() {
 
                     <div className='flex gap-3'>
 
-                        <img className='h-20' src={'../../src/assets/running.png'}/>
+                        <img className='h-20' src={running}/>
                         <div>
                             <h1 className='font-semibold'>Quickness</h1>
                             <p>We offer you a way to quickly build a resume for any job or industry, no need to create an
@@ -48,7 +54,7 @@ export function Landing() {
                     </div>
 
                     <div className='flex gap-3'>
-                    <img className='h-20' src={'../../src/assets/free-2.png'}/>
+                    <img className='h-20' src={free}/>
                         <div>
                             <h1 className='font-semibold'>Free</h1>
                             <p>We offer you a free way to make a resume, no fees or hidden fees, no need to enter a credit card</p>
@@ -64,7 +70,7 @@ export function Landing() {
                 <div className='flex flex-col gap-10 text-2xl px-10 items-center justify-end' >
 
                     <div className='flex items-center gap-10'>
-                    <img src={'../../src/assets/architect.png'} className='h-80'/>
+                    <img src={arc} className='h-80'/>
                         <div className='bg-slate-100 p-10 rounded-2xl'>
                             <h1 className='font-semibold'>Enter Education, Experience, and Personal Information</h1>
                             <p className='w-96'>Enter your professional information that include name, phone number and email, your school education stats, and any professional work experience that you have </p>
@@ -77,12 +83,12 @@ export function Landing() {
                             <h1 className='font-semibold'>Watch in real time as your resume is being built</h1>
                             <p className='w-96'>As you enter each information you can see in real time how your resume is being built. You can also delete and edit each entry as you please</p>
                         </div>
-                        <img src={'../../src/assets/barrier.png'} className='h-80'/>
+                        <img src={barrier} className='h-80'/>
 
                     </div>
 
                     <div className='flex items-center gap-10'>
-                        <img src={'../../src/assets/project.png'} className='h-80'/>
+                        <img src={project} className='h-80'/>
                         <div className='bg-slate-100 p-10 rounded-2xl'>
                             <h1 className='font-semibold'>Download your resume as a pdf</h1>
                             <p className='w-96'>Once you enter all the information you want on your resume, hit the download button so that you can recieve your new resume as a pdf</p>

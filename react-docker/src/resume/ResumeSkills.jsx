@@ -1,5 +1,5 @@
 function ResumeSkills ({skills}) {
-    if (skills==='') {
+    if (!skills) {
         return (
             <>
 

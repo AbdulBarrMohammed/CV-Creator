@@ -1,5 +1,5 @@
 function ResumeHeader ({id, name, email, phone, cityProv}) {
-    if (name==='') {
+    if (!name || !email || !phone || !cityProv) {
         return (
             <>
 
