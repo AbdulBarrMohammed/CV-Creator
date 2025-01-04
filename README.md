@@ -1,7 +1,7 @@
 # Resume Swift
 Resume Swift allows college students of all majors to quickly make a resume by providing basic information that include their work experience, contact information, projects, skills and education. They will then be allowed to download the resume as a pdf to their computer.
 
-## Web App Link
+## Website Link
 https://resumeswift.netlify.app
 
 ## Functionality 
